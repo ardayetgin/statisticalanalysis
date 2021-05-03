@@ -160,5 +160,23 @@ sns.set() #We use this method for using seaborn to our graphs.
 sns.jointplot(x='LSTAT', y='MEDV', data=bostondf, kind = 'reg')
 plt.show()
 
+#Box plots:
 
+iris = sns.load_dataset('iris')
+sns.boxplot(x = 'species', y = 'sepal_length', data = iris)
+plt.show()
+
+#If we want to see the distribution of the data, we could use .swarmplot() method.
+
+sns.swarmplot(x = 'species', y = 'sepal_length', data = iris, color='k')
+alpha = 0.7
+plt.show()
+
+#Also there is a graph called 'Violin Graph' to see the distribution of the data.
+
+sns.violinplot(x = 'species', y = 'sepal_length', data = iris)
+plt.show
+
+sns.violinplot(x = 'species', y = 'sepal_length', data = iris, inner = None)
+sns.stripplot(x = 'species', y = 'sepal_length', data = iris, jitter = True, color = 'black')
 
