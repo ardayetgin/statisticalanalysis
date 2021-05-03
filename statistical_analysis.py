@@ -106,4 +106,59 @@ plt.show()
 #Another hist graph:
 iris.plot.hist(alpha=0.6)
 
-#Also we can draw a 2d histograms with two different variables. These hist graphs also called heat maps.
+#Also we can draw a 2d histograms with two different variables. These hist graphs also called heat maps. We use plt.hist2d() function for these.
+
+from sklearn import datasets
+iris = datasets.load_iris()
+X = iris.data[:,2]
+Y = iris.data[:,3]
+plt.subplot(1,2,1)
+plt.scatter(X,Y)
+plt.xlabel('Petal Length(cm)')
+plt.ylabel('Petal Width(cm)')
+plt.title('Dot Graph')
+plt.subplot(1,2,2)
+plt.hist2d(X,Y, cmap='plasma')
+plt.colorbar()
+plt.xlabel('Petal Length(cm)')
+plt.ylabel('Petal Width(cm)')
+plt.title('2D Histogram Graph')
+plt.tight_layout()
+plt.show()
+
+#If we want show this graph with hexagons:
+
+plt.hexbin(X,Y, gridsize=(7,7))
+plt.colorbar()
+plt.xlabel('Petal Length(cm)')
+plt.ylabel('Petal Width(cm)')
+plt.title('2D Histogram Graph-Hexagon')
+plt.tight_layout()
+plt.show()
+
+#Now we use jointplot() function to see the corelation between two variables.
+
+from sklearn import datasets
+import matplotlib.pyplot as plt
+import seaborn as sns
+import pandas as pd
+boston = datasets.load_boston()
+bostondf = pd.DataFrame(boston.data)
+bostondf.columns = boston.feature_names
+bostondf['MEDV'] = boston.target
+
+sns.jointplot(x='LSTAT', y='MEDV', data=bostondf)
+plt.show()
+
+#We can draw regression line on this graph.
+
+sns.jointplot(x='LSTAT', y='MEDV', data=bostondf, kind = 'reg')
+plt.show()
+
+#Also we have the seaborn style of this graph:
+sns.set() #We use this method for using seaborn to our graphs.
+sns.jointplot(x='LSTAT', y='MEDV', data=bostondf, kind = 'reg')
+plt.show()
+
+
+
